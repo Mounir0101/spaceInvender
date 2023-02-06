@@ -1,5 +1,5 @@
 
-.grille {
+#grille {
     display: flex;
     flex-wrap: wrap;
     border: 1px solid #000;
@@ -11,6 +11,10 @@
     animation: background-defile 5s linear infinite;
 }
 
+div {
+    width: 25px;
+    height: 25px;
+}
 @keyframes background-defile {
     from {
         background-position-y: 0px;
@@ -45,9 +49,10 @@ h3 {
 .laser {
     background-color: orange;
 }
-#myImage {
-    position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  }
+
+.dataLeft{
+    background-color: red;
+}
+.dataRight{
+    background-color: blue;
+}
