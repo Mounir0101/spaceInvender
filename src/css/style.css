@@ -45,3 +45,10 @@ h3 {
 .laser {
     background-color: orange;
 }
+
+.dataLeft{
+    background-color: red;
+}
+.dataRight{
+    background-color: blue;
+}
