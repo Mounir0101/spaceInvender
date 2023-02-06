@@ -22,17 +22,32 @@ function tirer() {
     var div = document.createElement("div");
     div.className = "laser";
     div.style.top = "500px"; // Position initiale du tir
-    div.style.left = "765px"; // Position initiale du tir
+    div.style.left = "1200px"; // Position initiale du tir
     parent.appendChild(div);
     var vitesse = setInterval(function() {
       var top = parseInt(div.style.top);
       top -= 10; // Déplacement du tir vers le haut
-      div.style.top = top + "px";
-      if (top <= 90) {
+      div.style.top = top + "px";      
+      if (top <= 85) {
         clearInterval(vitesse); // Arrêt de l'animation lorsque le tir sort de la grille
         parent.removeChild(div); // Suppression du tir du DOM
-      }
+      } 
     }, 30); 
+
+    document.onkeydown = function(e) {
+        switch (e.keyCode) {
+        case 37:
+        var left = parseInt(div.style.left);
+        left -= 20; // Déplacement du tir vers la gauche
+        div.style.left = left + "px";
+        break;
+        case 39:
+        var left = parseInt(div.style.left);
+        left += 20; // Déplacement du tir vers la droite
+        div.style.left = left + "px";
+        break;
+        }
+        };
   }
   
   
