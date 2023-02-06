@@ -35,14 +35,14 @@ h3 {
 }
 
 .tireur {
-    background: url(ressources/vaisseau.png);
+    background: url(../../ressources/vaisseau.png);
     transform: rotate(180deg);
     background-position: center;
     background-size: contain;
 }
 
 .alien {
-    background: url(ressources/ennemies.png);
+    background: url(../../ressources/ennemies.png);
     background-position: center;
     background-size: contain;
 }
