@@ -7,20 +7,11 @@ function grille() {
     for (var i = 0; i < 400; i++) {
       var div = document.createElement("div");
       parent.appendChild(div);
-      if (i % 20 === 0) { // Tous les multiple de 20
-        div.className = "dataLeft";
-        liste.push("dataLeft");
-      }
-      else if (i % 20 === 19) { // Tous les multiple de 20-19 pour que ça aille de l'autre coté
-        div.className = "dataRight";
-        liste.push("dataRight");
-      }
-      else if (i === 10 ){
+       if (i === 10 ){
         div.className = "alien";
         div.classList.remove("cases6");
         liste.push("alien");
       }
-
       else {
         div.className = "cases"+i;
         liste.push("cases"+i);
@@ -36,79 +27,91 @@ function grille() {
 
     var coterDroit = true;
     var coterGauche = false;
-    var descendre = false;
+    var descendreDroit = false;
+    var descendreGauche = false;
 
     setInterval(function() {
+        var div = document.querySelector(".alien"); // Sélectionne la div class="alien"
+        div.classList.remove("alien"); // Enleve la class="alien" à la div sélectionnée
+        var index = liste.indexOf("alien")
+        console.log(index);
+
+
 
         if (coterDroit == true){
 
             console.log("----->");;
-            var div = document.querySelector(".alien"); // Sélectionne la div class="alien"
-            div.classList.remove("alien"); // Enleve la class="alien" à la div sélectionnée
-            var index = liste.indexOf("alien"); // Récupere l'index de la liste ou se situe une div "alien"
             index++; // Ajoute +1 à l'indexe 
             console.log(liste[index]); // Donne les données de la case indexe
             liste[index-1] = "cases" + (index-1); // La case précédente se refait renommer div="cases"+index dans la liste
             liste[index] = "alien"; // La case actuelle est renomée "alien" dans la liste
             var nextAlien = document.querySelector(".cases" + index); // La case précédente se refait renommer div="cases"+index dans la grille
             nextAlien.classList.add("alien"); // La case actuelle est renomée "alien" dans la grille
-
-            if (liste[index+1] == "dataRight"){
-                console.log("Arrivé")
-                descendre = true;
+            if (index % 20 === 19) { // Tous les multiple de 20 pour que ça aille de l'autre coté
+                console.log("Coter Droit")
+                descendreGauche = true;
+                descendreDroit = false;
                 coterDroit = false;
                 coterGauche = false;
-            }
+              }
+
             
         }
         else if (coterGauche == true){
 
             console.log("<-----");
-            var div = document.querySelector(".alien"); 
-            div.classList.remove("alien");
-            var index = liste.indexOf("alien");
             index=index-1;
-            console.log(liste[index]);
             liste[index+1] = "cases" + (index+1);
             liste[index] = "alien";
             var nextAlien = document.querySelector(".cases" + index);
             nextAlien.classList.add("alien");
             console.log(liste[index-1]);
-
-            if (liste[index-1] == "dataLeft"){
-                console.log("Arrivé")
-                descendre = true;
+            if (index % 20 === 0) { // Tous les multiple de 20 pour que ça aille de l'autre coté
+                console.log("Coter Droit")
+                descendreGauche = false;
+                descendreDroit = true;
                 coterDroit = false;
                 coterGauche = false;
-            }
+              }
 
         }
-        else if (descendre == true){
+        else if (descendreDroit == true){
+            console.log(index);
 
-            console.log("↓");;
-            var div = document.querySelector(".alien");
-            div.classList.remove("alien");
-            var index = liste.indexOf("alien");
-            index=index+21;
+            console.log("↓ DESD DROIT ->");;
+            index=index+20;
             console.log(liste[index]);
-            liste[index-21] = "cases" + (index-21);
+            liste[index-20] = "cases" + (index-20);
             liste[index] = "alien";
-            var nextAlien = document.querySelector(".dataRight");
+            var nextAlien = document.querySelector(".cases" + index);
             nextAlien.classList.add("alien");
             
 
-            if (liste[index-1] == "dataLeft"){
                 console.log("va partir sur la droite")
                 descendre = false;
                 coterDroit = true;
                 coterGauche = false;
-            }
-            else {
+            
+
+
+        }
+        else if (descendreGauche == true){
+
+            console.log("↓ DESC GAUCHE <-");;
+            index=index+20;
+            
+            console.log(liste[index]);
+            console.log(index);
+            liste[index-20] = "cases" + (index-20);
+            liste[index] = "alien";
+            var nextAlien = document.querySelector(".cases" + index);
+            nextAlien.classList.add("alien");
+            
                 console.log("va partir sur la gauche")
                 descendre = false;
                 coterDroit = false;
                 coterGauche = true;
-            }
+            
 
         }
         else {
@@ -126,117 +129,116 @@ function grille() {
 
 
 
+
+
 /*
+    var coterDroit = true;
+    var coterGauche = false;
+    var descendreDroit = false;
+    var descendreGauche = false;
+
     setInterval(function() {
-        var div = document.querySelector(".alien");
-        div.classList.remove("alien");
-        var index = liste.indexOf("alien");
-        index++;
-        console.log(liste[index]);
-        if (liste[index] == "dataRight"){
-            console.log("sur dataRight");
-            index=index+20;
-            liste[index-20] = "dataRight";
+        var index = liste.indexOf("alien")
+        console.log(index);
+
+        if (coterDroit == true){
+
+            console.log("----->");;
+            var div = document.querySelector(".alien"); // Sélectionne la div class="alien"
+            div.classList.remove("alien"); // Enleve la class="alien" à la div sélectionnée
+            index++; // Ajoute +1 à l'indexe 
+            console.log(liste[index]); // Donne les données de la case indexe
+            liste[index-1] = "cases" + (index-1); // La case précédente se refait renommer div="cases"+index dans la liste
+            liste[index] = "alien"; // La case actuelle est renomée "alien" dans la liste
+            var nextAlien = document.querySelector(".cases" + index); // La case précédente se refait renommer div="cases"+index dans la grille
+            nextAlien.classList.add("alien"); // La case actuelle est renomée "alien" dans la grille
+
+            if (liste[index+1] == "dataRight"){
+                console.log("Arrivé")
+                descendreGauche = true;
+                descendreDroit = false;
+                coterDroit = false;
+                coterGauche = false;
+            }
+            
+        }
+        else if (coterGauche == true){
+
+            console.log("<-----");
+            var div = document.querySelector(".alien"); 
+            div.classList.remove("alien");
+            index=index-1;
+            liste[index+1] = "cases" + (index+1);
+            liste[index] = "alien";
+            var nextAlien = document.querySelector(".cases" + index);
+            nextAlien.classList.add("alien");
+            console.log(liste[index-1]);
+
+            if (liste[index-1] == "dataLeft"){
+                console.log("Arrivé")
+                descendreGauche = false;
+                descendreDroit = true;
+                coterDroit = false;
+                coterGauche = false;
+            }
+
+        }
+        else if (descendreDroit == true){
+            console.log(index);
+
+            console.log("↓ DESD DROIT ->");;
+            var div = document.querySelector(".alien");
+            div.classList.remove("alien");
+            index=index+21;
+            console.log(liste[index]);
+            liste[index-21] = "cases" + (index-21);
+            liste[index] = "alien";
+            var nextAlien = document.querySelector(".dataLeft");
+            nextAlien.classList.add("alien");
+            
+
+                console.log("va partir sur la droite")
+                descendre = false;
+                coterDroit = true;
+                coterGauche = false;
+            
+
+
+        }
+        else if (descendreGauche == true){
+
+            console.log(index);
+            console.log("↓ DESC GAUCHE <-");;
+            var div = document.querySelector(".alien");
+            div.classList.remove("alien");
+            index=index+21;
+            console.log(liste[index]);
+            liste[index-21] = "cases" + (index-21);
             liste[index] = "alien";
             var nextAlien = document.querySelector(".dataRight");
             nextAlien.classList.add("alien");
-            console.log(liste);
-            index=index-5;
+            
+                console.log("va partir sur la gauche")
+                descendre = false;
+                coterDroit = false;
+                coterGauche = true;
+            
+
         }
-        liste[index-1] = "cases" + (index-1);
-        liste[index] = "alien";
-        var nextAlien = document.querySelector(".cases" + index);
-        nextAlien.classList.add("alien");
+        else {
+
+        }
+        
+
 
     
     }, 1000);
-    */
+    
 
-    /*
-            if (coterDroit == true){
-            console.log("----->");;
-            var div = document.querySelector(".alien");
-            div.classList.remove("alien");
-            var index = liste.indexOf("alien");
-            index++;
-            console.log(liste[index]);
-            liste[index-1] = "cases" + (index-1);
-            liste[index] = "alien";
-            var nextAlien = document.querySelector(".cases" + index);
-            nextAlien.classList.add("alien");
-        }
-        else if (coterGauche == true){
-            console.log("<-----");
-            var div = document.querySelector(".alien");
-            div.classList.remove("alien");
-            var index = liste.indexOf("alien");
-            index=index-1;
-            console.log(liste[index]);
-            liste[index-1] = "cases" + (index-1);
-            liste[index] = "alien";
-            var nextAlien = document.querySelector(".cases" + index);
-            nextAlien.classList.add("alien");
-        } else {
-            console.log("ok");
-        }
-        if (liste[index+1] == "dataRight"){
-            console.log("Coter Droit");
-            console.log(coterDroit);
+}
 
-
-            console.log("----->");;
-            var div = document.querySelector(".alien");
-            div.classList.remove("alien");
-            var index = liste.indexOf("alien");
-            index++;
-            console.log(liste[index]);
-            liste[index-1] = "cases" + (index-1);
-            liste[index] = "alien";
-            var nextAlien = document.querySelector(".dataRight");
-            nextAlien.classList.add("alien");
-
-            console.log("↓");;
-            var div = document.querySelector(".alien");
-            div.classList.remove("alien");
-            var index = liste.indexOf("alien");
-            index=index+20;
-            console.log(liste[index]);
-            liste[index-20] = "cases" + (index-20);
-            liste[index] = "alien";
-            var nextAlien = document.querySelector(".dataRight");
-            nextAlien.classList.add("alien");
-
-            coterDroit = false;
-            coterGauche = true;
-        }
-        else if (liste[index-1] == "dataLeft"){
-            console.log("Coter Gauche");
-            console.log(coterGauche);
-
-
-            console.log("<-----");;
-            var div = document.querySelector(".alien");
-            div.classList.remove("alien");
-            var index = liste.indexOf("alien");
-            index--;
-            console.log(liste[index]);
-            liste[index+1] = "cases" + (index+1);
-            liste[index] = "alien";
-            var nextAlien = document.querySelector(".dataLeft");
-            nextAlien.classList.add("alien");
-
-            console.log("↓");;
-            var div = document.querySelector(".alien");
-            div.classList.remove("alien");
-            var index = liste.indexOf("alien");
-            index=index+20;
-            console.log(liste[index]);
-            liste[index-20] = "cases" + (index-20);
-            liste[index] = "alien";
-            var nextAlien = document.querySelector(".dataLeft");
-            nextAlien.classList.add("alien");
-
-            coterDroit = true;
-            coterGauche = false;
-        }
+      else if (i % 20 === 19) { // Tous les multiple de 20-19 pour que ça aille de l'autre coté
+        div.className = "dataRight";
+        liste.push("dataRight");
+      }
         */
