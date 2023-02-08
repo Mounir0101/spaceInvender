@@ -37,7 +37,7 @@ function grille() {
 
     setInterval(function() {
         if (coterDroit == true){
-            console.log("----->");;
+       
             var div = document.querySelector(".alien");
             div.classList.remove("alien");
             var index = liste.indexOf("alien");
@@ -49,7 +49,7 @@ function grille() {
             nextAlien.classList.add("alien");
         }
         else if (coterGauche == true){
-            console.log("<-----");
+
             var div = document.querySelector(".alien");
             div.classList.remove("alien");
             var index = liste.indexOf("alien");
@@ -63,11 +63,9 @@ function grille() {
             console.log("ok");
         }
         if (liste[index+1] == "dataRight"){
-            console.log("Coter Droit");
-            console.log(coterDroit);
+           
 
-
-            console.log("----->");;
+       
             var div = document.querySelector(".alien");
             div.classList.remove("alien");
             var index = liste.indexOf("alien");
@@ -89,15 +87,8 @@ function grille() {
             var nextAlien = document.querySelector(".dataRight");
             nextAlien.classList.add("alien");
 
-            coterDroit = false;
-            coterGauche = true;
         }
         else if (liste[index-1] == "dataLeft"){
-            console.log("Coter Gauche");
-            console.log(coterGauche);
-
-
-            console.log("<-----");;
             var div = document.querySelector(".alien");
             div.classList.remove("alien");
             var index = liste.indexOf("alien");
@@ -119,8 +110,7 @@ function grille() {
             var nextAlien = document.querySelector(".dataLeft");
             nextAlien.classList.add("alien");
 
-            coterDroit = true;
-            coterGauche = false;
+         
         }
 
 
@@ -129,60 +119,31 @@ function grille() {
 
     //////////////////////////////////////// Tir /////////////////////////////////////////////////////////
 
-    document.onkeydown = function (e) {
-        if (e.key === ' ') {
-          let laser = document.createElement('div');
-          laser.classList.add('laser');
-          laser.style.left = `${tireur.offsetLeft + (tireur.offsetWidth / 2) - 1}px`;
-          laser.style.top = `${tireur.offsetTop - 10}px`;
-          document.querySelector('#grille').appendChild(laser);
+   
+        
       
-          let animationInterval = setInterval(function() {
-            laser.style.top = `${laser.offsetTop - 10}px`;
-            if (laser.offsetTop <= 0) {
-              clearInterval(animationInterval);
-              laser.remove();
-            }
-          }, 50);
-        }
-      
-        if (e.key == 'ArrowUp') {
-          // ...
-        }
-        if (e.key == 'ArrowDown') {
-          // ...
-        }
-        if (e.key == 'ArrowLeft') {
-          // ...
-        }
-        if (e.key == 'ArrowRight') {
-          // ...
-        }
-      };
+     
     
     //////////////////////////////////////////////////////////// Vaisseau ///////////////////////////////////////////////
 
-    var divs = document.querySelectorAll('div');
-    var positiontireur = 230;
-    divs [positiontireur].classList.add('tireur') ;
-
-
-
-
-
-    var divs = document.querySelectorAll('#grille div');
-    var positiontireur = 230;
-    divs[positiontireur].classList.add('tireur') ;
     
 
- 
 
-    let tireur = document.querySelector('tireur')
 
+
+
+    
+    var divs = document.querySelectorAll('#grille div');
+    var positiontireur = 230;
+    divs[positiontireur].classList.add('tireur');
+    
+    
+   
     document.onkeydown = function (e) {
 
       divs[positiontireur].classList.remove('tireur') ;
 
+      
       if (e.key == 'ArrowUp') {
         if (positiontireur > 173)
         positiontireur -= 20;
@@ -195,12 +156,8 @@ function grille() {
       if (e.key == 'ArrowLeft') {
         if (positiontireur >220)
         positiontireur -= 1 
-        
-        
-          
+           
       }
-      
-      
       if (e.key == 'ArrowRight'){  
 
         if (positiontireur <239)
@@ -208,14 +165,54 @@ function grille() {
         
         
       }
-      console.log(divs);
-      console.log(positiontireur);
+
+      divs[positiontireur].classList.add('tireur') ;
+    }
+
       
-        divs[positiontireur].classList.add('tireur') ;
-      };
-}
+
+
+        function tir(e){
+
+
+          if(e.keyCode === 32){
+              divs[positiontireur - 20].classList.add('laser');
+            
+              
+          }
+        
+        
+  
+        }
+
+        setInterval(deplacementLaser,100)
+        document.addEventListener('keyup', tir);
 
 
 
+
+        function deplacementLaser(){
+          for (i=0 ;i < divs.length; i++) {
+            
+            if (divs[i].classList.contains('laser')){
+              divs[i].classList.remove('laser');
+              let newposition = i-20;
+              divs[newposition].classList.add('laser')
+
+              
+            }
+
+          }
+
+        }
+
+
+     
+
+
+};
+
+setInterval(deplacementLaser,100)
+ 
 
 

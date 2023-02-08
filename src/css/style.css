@@ -54,15 +54,6 @@ h3 {
 }
 
 .laser {
-    position: absolute;
-    width: 3px;
-    height: 10x;
-    background-color: rgb(239, 204, 4);
-  }
+    background-color: orange;
+}
 
-.dataLeft{
-    background-color: red;
-}
-.dataRight{
-    background-color: blue;
-}
