@@ -14,9 +14,9 @@ function grille() {
 
 
 
-    var divs = document.querySelectorAll('div');
+    var divs = document.querySelectorAll('#grille div');
     var positiontireur = 230;
-    divs [positiontireur].classList.add('tireur') ;
+    divs[positiontireur].classList.add('tireur') ;
     
 
  
@@ -24,38 +24,39 @@ function grille() {
     let tireur = document.querySelector('tireur')
 
     document.onkeydown = function (e) {
-        if (e.key == 'ArrowUp') {
-            for(let j = 0; j < 20; j++) {
-    
-                    let cases = document.querySelector('.tireur')
-            
-                            cases.classList.remove('tireur')
-                            cases.previousElementSibling.classList.add('tireur')                
-            }
-        }
-        if (e.key == 'ArrowDown') {
-            for(let j = 0; j < 20; j++) {
-                
-                    let cases = document.querySelector('.tireur')
-            
-                            cases.classList.remove('tireur')
-                            cases.nextElementSibling.classList.add('tireur')                
-            }
-        }
+
+      divs[positiontireur].classList.remove('tireur') ;
+
+      if (e.key == 'ArrowUp') {
+        if (positiontireur > 173)
+        positiontireur -= 20;
+      }
+      if (e.key == 'ArrowDown') {
+          if(positiontireur < 220)
+        positiontireur += 20 
+      }
+      
+      if (e.key == 'ArrowLeft') {
+        if (positiontireur >220)
+        positiontireur -= 1 
         
-        if (e.key == 'ArrowLeft') {
-          var cases = document.querySelector('.tireur')
-           
-                cases.classList.remove('tireur')
-                cases.previousElementSibling.classList.add('tireur')
-            
-        }
-        var cases = document.querySelector('.tireur')
-        if (e.key == 'ArrowRight'){
-            cases.classList.remove('tireur')
-            cases.nextElementSibling.classList.add('tireur')
-        }
-    };
+        
+          
+      }
+      
+      
+      if (e.key == 'ArrowRight'){  
+
+        if (positiontireur <239)
+        positiontireur += 1
+        
+        
+      }
+      console.log(divs);
+      console.log(positiontireur);
+      
+        divs[positiontireur].classList.add('tireur') ;
+      };
 }
 
 
