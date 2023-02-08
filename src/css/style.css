@@ -28,10 +28,12 @@ h3 {
     text-align: center;
     margin: 20px 0;
 }
+
 .grille div {
     width: 25px;
     height: 25px;
 }
+
 .tireur {
     background: url(../../ressources/vaisseau.png);
     transform: rotate(180deg);
@@ -40,17 +42,27 @@ h3 {
 
   
 }
+
 .alien {
     background: url(../../ressources/ennemies.png);
     background-position: center;
     background-size: contain;
 }
+
 .boom {
     background-color: red;
 }
+
 .laser {
-    background-color: orange;
+    position: absolute;
+    width: 3px;
+    height: 10x;
+    background-color: rgb(239, 204, 4);
+  }
+
+.dataLeft{
+    background-color: red;
 }
-
-
-
+.dataRight{
+    background-color: blue;
+}
