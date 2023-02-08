@@ -129,31 +129,36 @@ function grille() {
 
     //////////////////////////////////////// Tir /////////////////////////////////////////////////////////
 
-    function tirer() {
-        var parent = document.getElementById("grille");
-        var div = document.createElement("div");
-        div.className = "laser";
-        div.style.top = "500px"; // Position initiale du tir
-        div.style.left = "1200px"; // Position initiale du tir
-        parent.appendChild(div);
-        var vitesse = setInterval(function() {
-          var top = parseInt(div.style.top);
-          top -= 10; // Déplacement du tir vers le haut
-          div.style.top = top + "px";
-          if (top <= 85) {
-            clearInterval(vitesse); // Arrêt de l'animation lorsque le tir sort de la grille
-            parent.removeChild(div); // Suppression du tir du DOM
-          }
-        }, 30); 
-      }
-    
-    
-    
-    document.addEventListener("keydown", function(event) {
-      if (event.code === "Space") {
-        tirer();
-      }
-    });
+    document.onkeydown = function (e) {
+        if (e.key === ' ') {
+          let laser = document.createElement('div');
+          laser.classList.add('laser');
+          laser.style.left = `${tireur.offsetLeft + (tireur.offsetWidth / 2) - 1}px`;
+          laser.style.top = `${tireur.offsetTop - 10}px`;
+          document.querySelector('#grille').appendChild(laser);
+      
+          let animationInterval = setInterval(function() {
+            laser.style.top = `${laser.offsetTop - 10}px`;
+            if (laser.offsetTop <= 0) {
+              clearInterval(animationInterval);
+              laser.remove();
+            }
+          }, 50);
+        }
+      
+        if (e.key == 'ArrowUp') {
+          // ...
+        }
+        if (e.key == 'ArrowDown') {
+          // ...
+        }
+        if (e.key == 'ArrowLeft') {
+          // ...
+        }
+        if (e.key == 'ArrowRight') {
+          // ...
+        }
+      };
     
     //////////////////////////////////////////////////////////// Vaisseau ///////////////////////////////////////////////
 
