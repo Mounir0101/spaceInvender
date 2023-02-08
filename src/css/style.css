@@ -39,6 +39,8 @@ h3 {
     transform: rotate(180deg);
     background-position: center;
     background-size: contain;
+
+  
 }
 
 .alien {
@@ -58,5 +60,10 @@ h3 {
     background-color: rgb(239, 204, 4);
   }
 
-
+.dataLeft{
+    background-color: red;
+}
+.dataRight{
+    background-color: blue;
+}
 
