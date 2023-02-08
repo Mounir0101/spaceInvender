@@ -28,6 +28,8 @@ function grille() {
 
     }
 
+
+    /////////////////////////////////////////// Vaisseau ennemi ////////////////////////////////////////////////
     console.log(liste);
 
     var coterDroit = true;
@@ -124,8 +126,80 @@ function grille() {
 
     
     }, 1000);
-    
 
+    //////////////////////////////////////// Tir /////////////////////////////////////////////////////////
+
+    function tirer() {
+        var parent = document.getElementById("grille");
+        var div = document.createElement("div");
+        div.className = "laser";
+        div.style.top = "500px"; // Position initiale du tir
+        div.style.left = "1200px"; // Position initiale du tir
+        parent.appendChild(div);
+        var vitesse = setInterval(function() {
+          var top = parseInt(div.style.top);
+          top -= 10; // Déplacement du tir vers le haut
+          div.style.top = top + "px";
+          if (top <= 85) {
+            clearInterval(vitesse); // Arrêt de l'animation lorsque le tir sort de la grille
+            parent.removeChild(div); // Suppression du tir du DOM
+          }
+        }, 30); 
+      }
+    
+    
+    
+    document.addEventListener("keydown", function(event) {
+      if (event.code === "Space") {
+        tirer();
+      }
+    });
+    
+    //////////////////////////////////////////////////////////// Vaisseau ///////////////////////////////////////////////
+
+    var divs = document.querySelectorAll('div');
+    var positiontireur = 230;
+    divs [positiontireur].classList.add('tireur') ;
+
+
+
+
+    let tireur = document.querySelector('tireur')
+
+    document.onkeydown = function (e) {
+        if (e.key == 'ArrowUp') {
+            for(let j = 0; j < 20; j++) {
+
+                    let cases = document.querySelector('.tireur')
+
+                            cases.classList.remove('tireur')
+                            cases.previousElementSibling.classList.add('tireur')                
+            }
+        }
+        if (e.key == 'ArrowDown') {
+            for(let j = 0; j < 20; j++) {
+
+                    let cases = document.querySelector('.tireur')
+
+                            cases.classList.remove('tireur')
+                            cases.nextElementSibling.classList.add('tireur')                
+            }
+        }
+
+        if (e.key == 'ArrowLeft') {
+          var cases = document.querySelector('.tireur')
+
+                cases.classList.remove('tireur')
+                cases.previousElementSibling.classList.add('tireur')
+
+        }
+        var cases = document.querySelector('.tireur')
+        if (e.key == 'ArrowRight'){
+            cases.classList.remove('tireur')
+            cases.nextElementSibling.classList.add('tireur')
+        }
+    };
+    
 }
 
 
