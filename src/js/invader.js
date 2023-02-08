@@ -4,81 +4,112 @@ function grille() {
     for (var i = 0; i < 240; i++) {
       var div = document.createElement("div");
       parent.appendChild(div);
-       if (i === 10){
+      if (i===1 /*|| /*i===2 || i===3 || i===4 || i===5 || i===6 || i===7 || i===8 || i===9 || i===10 || i===11 || i===12*/){
         div.className = "alien";
-        div.classList.remove("cases6");
         liste.push("alien");
       }
       else {
-        div.className = "cases"+i;
-        liste.push("cases"+i);
+        div.className = "case" + i;
+        liste.push("case" + i);
       }
     }
-
-    var listeInvaders =[];
-    var b = 9;
-
+    
+    var listeInvaders = [];
+    var b = 1;
+    
     for (var x = 0; x < 1; x++){
-        var test = liste.indexOf("alien",b);
-        listeInvaders.push(test);
+        var index = liste.indexOf("alien", b);
+        listeInvaders.push(index);
         b++;
-
+    }
+    
+    function avanceDroit() {
+        for (var i = 0; i < listeInvaders.length; i++) {
+            listeInvaders[i] = listeInvaders[i] + 1;
+        }
+    }
+    
+    function avanceGauche() {
+        for (var i = 0; i < listeInvaders.length; i++) {
+            listeInvaders[i] = listeInvaders[i] - 1;
+        }
+    }
+    
+    function avDescendre() {
+        for (var i = 0; i < listeInvaders.length; i++) {
+            listeInvaders[i] = listeInvaders[i] + 20;
+        }
+    }
+    
+    function remplaceListeDroit() {
+        for (var i = 0; i < listeInvaders.length; i++) {
+            var index = listeInvaders[i];
+            liste[index - 1] = "case" + (index - 1);
+            liste[index] = "alien";
+        }
+    }
+    function remplaceListeGauche() {
+        for (var i = 0; i < listeInvaders.length; i++) {
+            var index = listeInvaders[i];
+            liste[index + 1] = "case" + (index + 1);
+            liste[index] = "alien";
+        }
     }
 
-    var c = 0;
-    var indexAvance = [];
-
-
-
-
-    function avanceDroit(){
-        listeInvaders.forEach(element => {
-            listeInvaders[c] = listeInvaders[c] + 1;
-            //c++;
-        });
-        index = listeInvaders;
-        console.log("index avance"+index);
+    function remplaceListeDescendGauche() {
+        for (var i = 0; i < listeInvaders.length; i++) {
+            var index = listeInvaders[i];
+            liste[index - 20] = "case" + (index - 20);
+            liste[index] = "alien";
+        }
+        console.log("remplaceListeDescendGauche")
     }
-    function avanceGauche(){
-        listeInvaders.forEach(element => {
-            listeInvaders[c] = listeInvaders[c] - 1;
-            //c++;
-        });
-        index = listeInvaders;
-        console.log("index avance"+index);
+    function remplaceListeDescendDroit() {
+        for (var i = 0; i < listeInvaders.length; i++) {
+            var index = listeInvaders[i];
+            liste[index + 20] = "case" + (index + 20);
+            liste[index] = "alien";
+        }
+        console.log("remplaceListeDescendGauche")
     }
-    function avDescendre(){
-        listeInvaders.forEach(element => {
-            listeInvaders[c] = listeInvaders[c] + 20;
-            //c++;
-        });
-        index = listeInvaders;
-        console.log("index avance"+index);
+    
+    function remplaceGrilleDroit() {
+        for (var i = 0; i < listeInvaders.length; i++) {
+            var index = listeInvaders[i];
+            var nextAlien = document.querySelector(".case" + index);
+            nextAlien.classList.add("alien");
+        }
     }
-
-
-
-
-
-    function remplaceListeDroit(){
-        listeInvaders.forEach(element => {
-            liste[index-1] = "cases" + (index-1); // La case précédente se refait renommer div="cases"+index dans la liste
-            liste[index] = "alien"; // La case actuelle est renomée "alien" dans la liste
-        });
-    }
-    function remplaceGrilleDroit(){
-        listeInvaders.forEach(element => {
-            var nextAlien = document.querySelector(".cases" + index); // La case précédente se refait renommer div="cases"+index dans la grille
-            nextAlien.classList.add("alien"); // La case actuelle est renomée "alien" dans la grille
-        });
+    function remplaceGrilleGauche() {
+        for (var i = 0; i < listeInvaders.length; i++) {
+            var index = listeInvaders[i];
+            var nextAlien = document.querySelector(".case" + index);
+            nextAlien.classList.add("alien");
+        }
     }
 
+    function remplaceGrilleDescendGauche() {
+        for (var i = 0; i < listeInvaders.length; i++) {
+            var index = listeInvaders[i];
+            var nextAlien = document.querySelector(".case" + index);
+            nextAlien.classList.add("alien");
+        }
+        console.log("remplaceGrilleDescendGauche")
 
-    function supprimeAlien(){
-        listeInvaders.forEach(element => {
-            div = document.querySelector(".alien"); // Sélectionne la div class="alien"
-            div.classList.remove("alien"); // Enleve la class="alien" à la div sélectionnée
-        });
+    }
+    function remplaceGrilleDescendDroit() {
+        for (var i = 0; i < listeInvaders.length; i++) {
+            var index = listeInvaders[i];
+            var nextAlien = document.querySelector(".case" + index);
+            nextAlien.classList.add("alien");
+        }
+        console.log("remplaceGrilleDescendGauche")
+
+    }
+    
+    function supprimeAlien() {
+        var div = document.querySelector(".alien");
+        div.classList.remove("alien");
     }
     
 
@@ -102,6 +133,7 @@ function grille() {
     setInterval(function() {
         supprimeAlien();
         console.log(index);
+        console.log(listeInvaders);
 
 
 
@@ -112,8 +144,8 @@ function grille() {
             console.log(liste[index]); // Donne les données de la case indexe
             remplaceListeDroit();
             remplaceGrilleDroit();
-            
-            if (index % 20 === 19) { // Tous les multiple de 20 pour que ça aille de l'autre coté
+
+            if (listeInvaders[0] % 20 === 19) { // Tous les multiple de 20 pour que ça aille de l'autre coté
                 console.log("Coter Droit")
                 descendreGauche = true;
                 descendreDroit = false;
@@ -127,12 +159,10 @@ function grille() {
 
             console.log("<-----");
             avanceGauche();
-            liste[index+1] = "cases" + (index+1);
-            liste[index] = "alien";
-            var nextAlien = document.querySelector(".cases" + index);
-            nextAlien.classList.add("alien");
+            remplaceListeGauche();
+            remplaceGrilleGauche();
             console.log(liste[index-1]);
-            if (index % 20 === 0) { // Tous les multiple de 20 pour que ça aille de l'autre coté
+            if (listeInvaders[0] % 20 === 0) { // Tous les multiple de 20 pour que ça aille de l'autre coté
                 console.log("Coter Droit")
                 descendreGauche = false;
                 descendreDroit = true;
@@ -147,12 +177,13 @@ function grille() {
             console.log("↓ DESD DROIT ->");;
 
             avDescendre();
-            
+
             console.log(liste[index]);
-            liste[index-20] = "cases" + (index-20);
-            liste[index] = "alien";
-            var nextAlien = document.querySelector(".cases" + index);
-            nextAlien.classList.add("alien");
+            console.log(index);
+            
+            remplaceListeDescendDroit();
+
+            remplaceGrilleDescendDroit();
             
 
                 console.log("va partir sur la droite")
@@ -171,10 +202,10 @@ function grille() {
 
             console.log(liste[index]);
             console.log(index);
-            liste[index-20] = "cases" + (index-20);
-            liste[index] = "alien";
-            var nextAlien = document.querySelector(".cases" + index);
-            nextAlien.classList.add("alien");
+            
+            remplaceListeDescendGauche();
+
+            remplaceGrilleDescendGauche();
             
                 console.log("va partir sur la gauche")
                 descendre = false;
@@ -242,3 +273,12 @@ var divs = document.querySelectorAll('div');
 
 ////////////////////////////////////////////////////////////////
 
+
+}
+
+      else if (i % 20 === 19) { // Tous les multiple de 20-19 pour que ça aille de l'autre coté
+        div.className = "dataRight";
+        liste.push("dataRight");
+      }
+        */
+      
