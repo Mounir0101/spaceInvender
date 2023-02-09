@@ -1,7 +1,7 @@
 const grille = document.querySelector('.grille')
 const resultsDisplay = document.querySelector('.results')
 let currentShooterIndex = 202
-let width = 15
+let width = 20
 let direction = 1
 let invadersId
 let goingRight = true
