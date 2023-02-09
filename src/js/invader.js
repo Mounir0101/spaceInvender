@@ -170,12 +170,16 @@ function grille() {
     }
 
       
-
+       
+        
 
         function tir(e){
 
 
           if(e.keyCode === 32){
+            console.log('shot')
+            const audio = new Audio("../../ressources/falling-bomb-41038.mp3");
+             audio.play();
               divs[positiontireur - 20].classList.add('laser');
             
               

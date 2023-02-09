@@ -54,6 +54,9 @@ h3 {
 }
 
 .laser {
-    background-color: orange;
+    transform: rotate(180deg);
+    background-position: center;
+    background-size: contain;
+    background: url("../../ressources/missile.jpg");
 }
 
