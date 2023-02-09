@@ -7,8 +7,8 @@
     height: 500px;
     margin: 0 auto;
     box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-    background: url(../../ressources/background-black.png);
-    animation: background-defile 5s linear infinite;
+    background: url("../../ressources/ciel-etoile.jpg");
+    animation: background-defile 0.5s linear infinite;
 }
 
 div {
@@ -28,27 +28,37 @@ h3 {
     text-align: center;
     margin: 20px 0;
 }
+
 .grille div {
     width: 25px;
     height: 25px;
 }
+
 .tireur {
     background: url(../../ressources/vaisseau.png);
     transform: rotate(180deg);
     background-position: center;
     background-size: contain;
+
+  
 }
+
 .alien {
     background: url(../../ressources/ennemies.png);
     background-position: center;
     background-size: contain;
 }
+
 .boom {
     background-color: red;
 }
+
 .laser {
-    background-color: orange;
-}
+    position: absolute;
+    width: 3px;
+    height: 10x;
+    background-color: rgb(239, 204, 4);
+  }
 
 .dataLeft{
     background-color: red;

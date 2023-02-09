@@ -3,7 +3,7 @@ let longueur = 20 // La largeur de la grille
 let supprimeAlien = [] // Tableau vide qui contiendra les index des aliens retirés de la grille
 
 // Boucle qui crée 400 cases pour la grille et les ajoute à la section HTML
-for (let i = 0; i < 400; i++) {
+for (let i = 0; i < 240; i++) {
 const div = document.createElement('div') // Crée un nouvel élément HTML div
 div.className = "case" + i; // Ajoute la classe "case + l'index de la case" à l'élément div
 grille.appendChild(div) // Ajoute l'élément div à la section .grille
@@ -75,3 +75,93 @@ setInterval(function() {
     apparaitAlien()
 
 }, 1000);
+
+    //////////////////////////////////////////////////////////// Vaisseau ///////////////////////////////////////////////
+
+    
+
+
+
+
+
+    
+var divs = document.querySelectorAll('.grille div');
+var positiontireur = 230;
+divs[positiontireur].classList.add('tireur');
+
+
+
+document.onkeydown = function (e) {
+    console.log(positiontireur);
+
+    divs[positiontireur].classList.remove('tireur') ;
+
+        
+    if (e.key == 'z') {
+        if (positiontireur > 199)
+        positiontireur -= 20;
+      }
+      if (e.key == 's') {
+          if(positiontireur < 220)
+        positiontireur += 20 
+      }
+      
+      if (e.key == 'a') {
+        if (positiontireur != 180 && positiontireur != 200 && positiontireur != 220 )
+        positiontireur -= 1 
+           
+      }
+      if (e.key == 'd'){  
+
+        if (positiontireur != 199 && positiontireur != 219 && positiontireur != 239)
+        positiontireur += 1
+        
+        
+      }
+
+    divs[positiontireur].classList.add('tireur') ;
+    }
+
+
+
+
+
+    function tir(e){
+
+
+        if(e.keyCode === 32){
+        console.log('shot')
+        const audio = new Audio("../../ressources/falling-bomb-41038.mp3");
+            audio.play();
+            divs[positiontireur - 20].classList.add('laser');
+        
+            
+        }
+
+
+
+    }
+
+    setInterval(deplacementLaser,100)
+    document.addEventListener('keyup', tir);
+
+
+
+
+    function deplacementLaser(){
+        for (i=0 ;i < divs.length; i++) {
+        
+        if (divs[i].classList.contains('laser')){
+            divs[i].classList.remove('laser');
+            let newposition = i-20;
+            divs[newposition].classList.add('laser')
+
+            
+        }
+
+        }
+
+    }
+
+
+setInterval(deplacementLaser,100)
