@@ -1,17 +1,53 @@
-<!DOCTYPE html>
+<!doctype html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="css/style.css">
+  <meta charset="utf-8">
+
+  <title>Space Invaders</title>
+  <link rel="stylesheet" href="../src/css/style.css">
+  <link href="https://fonts.cdnfonts.com/css/zorque" rel="stylesheet">
+  <link href="https://fonts.cdnfonts.com/css/neuropol-x" rel="stylesheet">
+                
+
 </head>
+
+    <style>
+    @import url('https://fonts.cdnfonts.com/css/zorque');
+    @import url('https://fonts.cdnfonts.com/css/neuropol-x');
+    </style>
+
 <body>
-    <h3>Score :</h3>
 
-    <div id="grille"></div>
+    <header>
+        <h1>SPACE INVADERS</h1>
+    </header>
+    
+    <main>
+        <p>Le but du jeu est de détruire tous les envahisseurs extraterrestres tout en évitant leurs tirs.
 
+            Vous contrôlez un vaisseau spatial qui se déplace horizontalement. Vous pouvez tirer des missiles en appuyant sur la barre espace.
+            
+            Les envahisseurs extraterrestres se déplacent lentement vers le bas de l'écran, et passent à la ligne suivante une fois qu'ils atteignent le bord de l'écran.
+            
+            Si un envahisseur extraterrestre atteint le bas de l'écran, la partie est terminée et vous perdez mais si vous arrivez à détruire tout les ennemis, vous gagnez.</p>
+    </main>
+    
+    
+        <div class="menulvl">
+            <button class="neon-box-1">Facile</button>
+            <button class="neon-box-2">Moyen</button>
+            <button class="neon-box-3">Difficile</button>
+        </div>
+        
+            <p class="results">Votre score :<br>      0</h1>
+            <div class="grille"></div>
+        
+    
 
-    <script src="js/invader.js"></script>
+  <script src="../src/js/invader.js"></script>
+
+  <div class="footer">&copy;<span id="year"> </span><span> Coding Factory invaders</span></div>
+
 </body>
 </html>
