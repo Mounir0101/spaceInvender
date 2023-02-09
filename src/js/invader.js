@@ -84,6 +84,13 @@ setInterval(function() {
 
 }, 250);
 
+    //////////////////////////////////////// Tir /////////////////////////////////////////////////////////
+
+   
+        
+      
+     
+    
     //////////////////////////////////////////////////////////// Vaisseau ///////////////////////////////////////////////
 
     
@@ -93,90 +100,125 @@ setInterval(function() {
 
 
     
-var divs = document.querySelectorAll('.grille div');
-var positiontireur = 230;
-divs[positiontireur].classList.add('tireur');
-
-
-
-document.onkeydown = function (e) {
-    console.log(positiontireur);
-
-    divs[positiontireur].classList.remove('tireur') ;
-
-        
-    if (e.key == 'z') {
-        if (positiontireur > 199)
-        positiontireur -= 20;
-      }
-      if (e.key == 's') {
-          if(positiontireur < 220)
-        positiontireur += 20 
-      }
-      
-      if (e.key == 'a') {
-        if (positiontireur != 180 && positiontireur != 200 && positiontireur != 220 )
-        positiontireur -= 1 
-           
-      }
-      if (e.key == 'd'){  
-
-        if (positiontireur != 199 && positiontireur != 219 && positiontireur != 239)
-        positiontireur += 1
-        
-        
-      }
-
-    divs[positiontireur].classList.add('tireur') ;
+    var divs = document.querySelectorAll('.grille div');
+    var positiontireur = 230;
+    divs[positiontireur].classList.add('tireur');
     
-    }
+    
+   
+    document.onkeydown = function (e) {
 
+        divs[positiontireur].classList.remove('tireur') ;
 
-
-
-
-    function tir(e){
-
-
-        if(e.keyCode === 32){
-        console.log('shot');
-        //const audio = new Audio("../../ressources/ressources_falling-bomb-41038.mp3");
-            //audio.play();
-            console.log("laser");
-            divs[positiontireur - 20].classList.add('laser');
         
+        if (e.key == 'z') {
+            if (positiontireur > 199)
+            positiontireur -= 20;
+          }
+          if (e.key == 's') {
+              if(positiontireur < 220)
+            positiontireur += 20 
+          }
+          
+          if (e.key == 'a') {
+            if (positiontireur != 180 && positiontireur != 200 && positiontireur != 220 )
+            positiontireur -= 1 
+               
+          }
+          if (e.key == 'd'){  
+    
+            if (positiontireur != 199 && positiontireur != 219 && positiontireur != 239)
+            positiontireur += 1
             
-        }
-
-
-
-    }
-
-    setInterval(deplacementLaser,100)
-    document.addEventListener('keyup', tir);
-
-
-
-
-    function deplacementLaser(){
-        for (i=0 ;i < 220; i++) {
+            
+          }
+    
+        divs[positiontireur].classList.add('tireur') ;
         
-        if (divs[i].classList.contains('laser')){
-            console.log("2")
-            divs[i].classList.remove('laser');
-            console.log("3")
-            let newposition = i-20;
-            console.log("4")
-            divs[newposition].classList.add('laser')
-            console.log("5")
-
-            
         }
 
-        }
+      
+       
+        
 
-    }
+        function tir(e){
 
 
-setInterval(deplacementLaser,100);
+            if(e.keyCode === 32){
+  
+              console.log('shot')
+              const audio = new Audio("../../ressources/falling-bomb-41038.mp3");
+               audio.play();
+                divs[positiontireur - 20].classList.add('laser');
+                
+            }
+          
+          
+    
+          }
+  
+          setInterval(deplacementLaser,100)
+          document.addEventListener('keyup', tir);
+  
+  
+  
+  
+          function deplacementLaser(){
+            for (i=0 ;i < divs.length; i++) {
+              
+              if (divs[i].classList.contains('laser')){
+                divs[i].classList.remove('laser');
+                let newposition = i-20;
+                const classes = divs[newposition].getAttribute('class').split(' ')
+                if (classes.includes('alien')) {
+                  divs[newposition].classList.remove('alien')
+                }
+                divs[newposition].classList.add('laser')
+              }
+  
+            }
+  
+          }
+  
+  
+       
+  
+  
+  
+  setInterval(deplacementLaser,100)
+ 
+
+
+ 
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
