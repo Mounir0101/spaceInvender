@@ -130,9 +130,10 @@ document.onkeydown = function (e) {
 
 
         if(e.keyCode === 32){
-        console.log('shot')
-        const audio = new Audio("../../ressources/falling-bomb-41038.mp3");
-            audio.play();
+        console.log('shot');
+        //const audio = new Audio("../../ressources/ressources_falling-bomb-41038.mp3");
+            //audio.play();
+            console.log("laser");
             divs[positiontireur - 20].classList.add('laser');
         
             
