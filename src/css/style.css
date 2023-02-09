@@ -1,5 +1,5 @@
 
-#grille {
+.grille {
     display: flex;
     flex-wrap: wrap;
     border: 1px solid #000;
