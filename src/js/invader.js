@@ -44,7 +44,6 @@ var avanceDroit = true // La variable pour contrôler la direction d'avancement 
 
 // Boucle qui s'exécute toutes les secondes et gère le mouvement des aliens
 setInterval(function() {
-    console.log(avance);
     supprimeClassAlien() // Supprime la classe aliens des anciennes cases
 
     if (alienInvaders[0] % longueur === 0){ // Si le premier alien de la liste atteint le coter gauche
@@ -79,7 +78,6 @@ setInterval(function() {
 
 
     console.log(alienInvaders[alienInvaders.length - 1]);
-    console.log(positiontireur);
     apparaitAlien()
 
 }, 250);
@@ -147,8 +145,8 @@ setInterval(function() {
             if(e.keyCode === 32){
   
               console.log('shot')
-              const audio = new Audio("../../ressources/falling-bomb-41038.mp3");
-               audio.play();
+              //const audio = new Audio("../../ressources/falling-bomb-41038.mp3");
+               //audio.play();
                 divs[positiontireur - 20].classList.add('laser');
                 
             }
@@ -164,16 +162,26 @@ setInterval(function() {
   
   
           function deplacementLaser(){
-            for (i=0 ;i < divs.length; i++) {
-              
-              if (divs[i].classList.contains('laser')){
-                divs[i].classList.remove('laser');
-                let newposition = i-20;
-                const classes = divs[newposition].getAttribute('class').split(' ')
-                if (classes.includes('alien')) {
-                  divs[newposition].classList.remove('alien')
+            for (i=0 ;i < 239; i++) {
+                console.log(divs[i])
+                console.log( alienInvaders[i])
+                if (divs[i] === alienInvaders[i]) {
+                    alert("touché");
                 }
-                divs[newposition].classList.add('laser')
+               
+                if (divs[i].classList.contains('laser')){
+                    divs[i].classList.remove('laser');
+                    let newposition = i-20;
+                    //const classes = divs[newposition].getAttribute('class').split(' ')
+                    //if (classes.includes('alien')) {
+                    //divs[newposition].classList.remove('alien')
+                    //}
+                    if (i <= 19){
+                    } else {
+                        divs[newposition].classList.add('laser')
+                    }
+
+                
               }
   
             }

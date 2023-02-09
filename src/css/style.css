@@ -54,11 +54,14 @@ h3 {
 }
 
 .laser {
-    position: absolute;
-    width: 3px;
-    height: 10x;
-    background-color: red;
-  }
+    
+    background-position: center;
+    background-size: contain;
+
+    background-image: url("../../ressources/missile.jpeg");
+
+    background-repeat: no-repeat;
+}
 
 .dataLeft{
     background-color: red;
