@@ -138,6 +138,7 @@ function grille() {
     divs[positiontireur].classList.add('tireur');
     
     
+    
    
     document.onkeydown = function (e) {
 
@@ -177,11 +178,11 @@ function grille() {
 
 
           if(e.keyCode === 32){
+
             console.log('shot')
             const audio = new Audio("../../ressources/falling-bomb-41038.mp3");
              audio.play();
               divs[positiontireur - 20].classList.add('laser');
-            
               
           }
         
@@ -201,9 +202,11 @@ function grille() {
             if (divs[i].classList.contains('laser')){
               divs[i].classList.remove('laser');
               let newposition = i-20;
+              const classes = divs[newposition].getAttribute('class').split(' ')
+              if (classes.includes('alien')) {
+                divs[newposition].classList.remove('alien')
+              }
               divs[newposition].classList.add('laser')
-
-              
             }
 
           }
