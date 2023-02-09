@@ -1,7 +1,10 @@
 window.onload = grille();
 function grille() {
     var parent = document.getElementById("grille");
-    for (var i = 0; i < 240; i++) {
+    var listParent = document.getElementById("list");
+    var liste = [];
+
+    for (var i = 0; i < 400; i++) {
       var div = document.createElement("div");
       parent.appendChild(div);
       if (i===1 /*|| /*i===2 || i===3 || i===4 || i===5 || i===6 || i===7 || i===8 || i===9 || i===10 || i===11 || i===12*/){
@@ -13,6 +16,8 @@ function grille() {
         liste.push("case" + i);
       }
     }
+
+    ////////////////////////////////////////////////////////////////////////////////////
     
     var listeInvaders = [];
     var b = 1;
@@ -223,10 +228,38 @@ function grille() {
     
     }, 1000);
     
-
 }
 
-//////////////////////// vaisseau ////////////////////////////
+/////////////////////////////////////////////////////////////////////
+
+function tirer() {
+    var parent = document.getElementById("grille");
+    var div = document.createElement("div");
+    div.className = "laser";
+    div.style.top = "500px"; // Position initiale du tir
+    div.style.left = "1200px"; // Position initiale du tir
+    parent.appendChild(div);
+    var vitesse = setInterval(function() {
+      var top = parseInt(div.style.top);
+      top -= 10; // Déplacement du tir vers le haut
+      div.style.top = top + "px";      
+      if (top <= 85) {
+        clearInterval(vitesse); // Arrêt de l'animation lorsque le tir sort de la grille
+        parent.removeChild(div); // Suppression du tir du DOM
+      } 
+    }, 30); 
+
+  }
+
+
+
+document.addEventListener("keydown", function(event) {
+  if (event.code === "Space") {
+    tirer();
+  }
+});
+
+//////////////////////////////////////////////////////////////////////////////////
 
 var divs = document.querySelectorAll('div');
     var positiontireur = 230;
@@ -271,14 +304,3 @@ var divs = document.querySelectorAll('div');
         }
     };
 
-////////////////////////////////////////////////////////////////
-
-
-}
-
-      else if (i % 20 === 19) { // Tous les multiple de 20-19 pour que ça aille de l'autre coté
-        div.className = "dataRight";
-        liste.push("dataRight");
-      }
-        */
-      
