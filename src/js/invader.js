@@ -11,7 +11,7 @@ grille.appendChild(div) // Ajoute l'élément div à la section .grille
 
 const div = Array.from(document.querySelectorAll('.grille div')) // Conversion de la liste des éléments HTML div en tableau pour une utilisation plus facile
 
-const alienInvaders = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52] // Tableau contenant les index des cases où les aliens sont positionnés
+var alienInvaders = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52] // Tableau contenant les index des cases où les aliens sont positionnés
 
 // Fonction qui ajoute la classe 'alien' aux éléments HTML div correspondant aux index des aliens
 function apparaitAlien() {
@@ -46,9 +46,9 @@ var avanceDroit = true // La variable pour contrôler la direction d'avancement 
 setInterval(function() {
     supprimeClassAlien() // Supprime la classe aliens des anciennes cases
 
-    if (alienInvaders[0] % longueur === 0){ // Si le premier alien de la liste atteint le coter gauche
+    if (alienInvaders[0] % longueur === 0 ){ // Si le premier alien de la liste atteint le coter gauche
         var descendreGauche = true; // Descendre gauche true
-    } else if (alienInvaders[alienInvaders.length - 1] % longueur === 19){ // Si le dernier alien de la liste atteint le coter droit
+    } else if (alienInvaders[alienInvaders.length - 1] % longueur === 19 ){ // Si le dernier alien de la liste atteint le coter droit
         var descendreDroit = true; // Descendre droit true
     }
 
@@ -163,22 +163,20 @@ setInterval(function() {
   
           function deplacementLaser(){
             for (i=0 ;i < 239; i++) {
-                console.log(divs[i])
-                console.log( alienInvaders[i])
-                if (divs[i] === alienInvaders[i]) {
-                    alert("touché");
-                }
-               
+                var classes = 0;
                 if (divs[i].classList.contains('laser')){
                     divs[i].classList.remove('laser');
                     let newposition = i-20;
-                    //const classes = divs[newposition].getAttribute('class').split(' ')
-                    //if (classes.includes('alien')) {
-                    //divs[newposition].classList.remove('alien')
-                    //}
                     if (i <= 19){
                     } else {
                         divs[newposition].classList.add('laser')
+                        divs[newposition].classList.remove('alien')
+                        console.log(newposition);
+                        console.log(alienInvaders + "liste")
+                        alienInvaders = alienInvaders.filter(item => item !== newposition)
+                        console.log(alienInvaders + "apres liste")
+                        
+
                     }
 
                 
