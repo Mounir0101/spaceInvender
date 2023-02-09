@@ -63,7 +63,7 @@ setInterval(function() {
     }
 
     if(descendreGauche && avanceDroit == false) {
-        console.log("↓ DESD GAUCHE ->");;
+        console.log("↓ DESD GAUCHE ->");
         for (let i = 0; i < alienInvaders.length; i++) {
         alienInvaders[i] += longueur -1 // Fait avancer tous les aliens de 20 - 1
         avance = 1 // Aller a droite
@@ -71,10 +71,18 @@ setInterval(function() {
         }
     }
     avancerAlien();
+    for (let i = 0; i < alienInvaders.length; i++) { // Collision
+            if (positiontireur === alienInvaders[i]) {
+                alert("PERDUE");
+            }
+        }
 
+
+    console.log(alienInvaders[alienInvaders.length - 1]);
+    console.log(positiontireur);
     apparaitAlien()
 
-}, 1000);
+}, 250);
 
     //////////////////////////////////////////////////////////// Vaisseau ///////////////////////////////////////////////
 
@@ -120,6 +128,7 @@ document.onkeydown = function (e) {
       }
 
     divs[positiontireur].classList.add('tireur') ;
+    
     }
 
 
@@ -150,12 +159,16 @@ document.onkeydown = function (e) {
 
 
     function deplacementLaser(){
-        for (i=0 ;i < divs.length; i++) {
+        for (i=0 ;i < 220; i++) {
         
         if (divs[i].classList.contains('laser')){
+            console.log("2")
             divs[i].classList.remove('laser');
+            console.log("3")
             let newposition = i-20;
+            console.log("4")
             divs[newposition].classList.add('laser')
+            console.log("5")
 
             
         }
@@ -165,4 +178,5 @@ document.onkeydown = function (e) {
     }
 
 
-setInterval(deplacementLaser,100)
+setInterval(deplacementLaser,100);
+
