@@ -41,9 +41,9 @@ alienInvaders[i] += avance // Ajoute la valeur de 'avance' à tous les aliens
 }
 
 var avanceDroit = true // La variable pour contrôler la direction d'avancement horizontal des aliens
-
+var fin;
 // Boucle qui s'exécute toutes les secondes et gère le mouvement des aliens
-setInterval(function() {
+function avancerAlienGlobal() {
     supprimeClassAlien() // Supprime la classe aliens des anciennes cases
 
     if (alienInvaders[0] % longueur === 0 ){ // Si le premier alien de la liste atteint le coter gauche
@@ -73,14 +73,20 @@ setInterval(function() {
     for (let i = 0; i < alienInvaders.length; i++) { // Collision
             if (positiontireur === alienInvaders[i]) {
                 alert("PERDUE");
+                clearInterval(fin)
             }
         }
+    if (alienInvaders.length === 0){
+        alert("GAGNER");
+        clearInterval(fin)
+    }
 
 
     console.log(alienInvaders[alienInvaders.length - 1]);
     apparaitAlien()
 
-}, 250);
+}
+fin = setInterval(avancerAlienGlobal, 250);
 
     //////////////////////////////////////// Tir /////////////////////////////////////////////////////////
 
