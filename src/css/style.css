@@ -131,10 +131,12 @@ h3 {
 .difficulty-buttons {
     display: flex;
     height: 100%;
+    justify-content: center;
   }
   
   .difficulty-buttons button {
     background-color: #ddd;
+    justify-content: center;
     border: none;
     color: #333;
     padding: 10px 20px;
@@ -162,6 +164,14 @@ h3 {
   .difficulty-buttons button.hard {
     background-color: rgb(0, 0, 0);
     color: #fff;
+  }
+
+  .replay-button {
+    color: #fff;
+    font-size: 2em;
+    margin-bottom: 5%;
+    justify-content: center;
+    background:linear-gradient(to right, #fb5502 0%,50%,#f70000 100%);
   }
 
 .results {

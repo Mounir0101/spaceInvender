@@ -198,3 +198,19 @@ fin = setInterval(avancerAlienGlobal, 250);
   
   
   setInterval(deplacementLaser,100)
+
+
+  /////// Replay
+
+const replayButton = document.querySelector('#replay-button');
+replayButton.addEventListener('click', function() {
+});
+
+  /////// Score
+
+let score = 0;
+if (divs[i].classList.remove('alien')){
+    console.log("sqdfghj")
+    score++;
+    document.querySelector("#score").innerHTML = score;
+}
