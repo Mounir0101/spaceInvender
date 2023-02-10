@@ -216,7 +216,7 @@ h3 {
 
   *,*::before,*::after{box-sizing: border-box;}
 
-a{
+button{
 
 
 all:unset;

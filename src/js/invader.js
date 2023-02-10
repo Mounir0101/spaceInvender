@@ -208,22 +208,22 @@ fin = setInterval(avancerAlienGlobal, 500 * difficulté);
           var inewposition = 0;
     function deplacementLaser(){
     for (i=0 ;i < 239; i++) {
-    var classes = 0;
-    if (divs[i].classList.contains('laser')){
-    divs[i].classList.remove('laser');
-    let newposition = i-20;
-    if (i <= 19){
-    } else {
-    divs[newposition].classList.add('laser');
-    if (divs[newposition].classList.contains('alien')){
-    divs[newposition].classList.remove('alien');
-    alienInvaders = alienInvaders.filter(item => item !== newposition)
-    divs[newposition].classList.remove('laser');
-    score++
-    console.log(score+" score");
-    }
-    }
-    }
+        var classes = 0;
+        if (divs[i].classList.contains('laser')){
+            divs[i].classList.remove('laser');
+            let newposition = i-20;
+        if (i <= 19){
+            } else {
+                divs[newposition].classList.add('laser');
+                if (divs[newposition].classList.contains('alien')){
+                    divs[newposition].classList.remove('alien');
+                    alienInvaders = alienInvaders.filter(item => item !== newposition)
+                    divs[newposition].classList.remove('laser');
+                    score++
+                    console.log(score+" score");
+                }
+            }
+        }
     }
     localStorage.setItem('score', score);
 
