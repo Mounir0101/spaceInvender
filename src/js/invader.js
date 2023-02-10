@@ -1,12 +1,13 @@
 const grille = document.querySelector('.grille') // Récupère l'élément HTML avec la classe .grille
 let longueur = 20 // La largeur de la grille
 let supprimeAlien = [] // Tableau vide qui contiendra les index des aliens retirés de la grille
-
+var score = 0;
 var difficulté = 1;
 
 const facile = document.querySelector('.neon-box-1');
 const moyen = document.querySelector('.neon-box-2');
 const difficile = document.querySelector('.neon-box-3');
+
 
 facile.addEventListener('click', function() {
     console.log(" clique")
@@ -211,6 +212,8 @@ fin = setInterval(avancerAlienGlobal, 500 * difficulté);
                             divs[newposition].classList.remove('laser');
                         } else {
                             divs[newposition].classList.remove('alien');
+                            score++
+                            console.log(score);
                         }
 
                     }
