@@ -148,7 +148,7 @@ fin = setInterval(avancerAlienGlobal, 250);
         function tir(e){
 
 
-            if(e.keyCode === 32){
+            if(e.key == 'c'){
   
               console.log('shot')
               //const audio = new Audio("../../ressources/falling-bomb-41038.mp3");
