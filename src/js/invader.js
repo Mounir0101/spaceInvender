@@ -1,7 +1,34 @@
 const grille = document.querySelector('.grille') // Récupère l'élément HTML avec la classe .grille
 let longueur = 20 // La largeur de la grille
 let supprimeAlien = [] // Tableau vide qui contiendra les index des aliens retirés de la grille
+var score = 0;
+var difficulté = 1;
 
+const facile = document.querySelector('.neon-box-1');
+const moyen = document.querySelector('.neon-box-2');
+const difficile = document.querySelector('.neon-box-3');
+
+
+facile.addEventListener('click', function() {
+    console.log(" clique")
+    difficulté = 1;
+    lanceLaPartie();
+});
+moyen.addEventListener('click', function() {
+    difficulté = 0.75;
+    lanceLaPartie();
+
+});
+difficile.addEventListener('click', function() {
+    difficulté = 0.50;
+    lanceLaPartie();
+
+});
+
+
+
+
+function lanceLaPartie(){
 // Boucle qui crée 400 cases pour la grille et les ajoute à la section HTML
 for (let i = 0; i < 240; i++) {
 const div = document.createElement('div') // Crée un nouvel élément HTML div
@@ -15,6 +42,7 @@ var alienInvaders = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 21, 22, 23, 24, 25, 
 
 // Fonction qui ajoute la classe 'alien' aux éléments HTML div correspondant aux index des aliens
 function apparaitAlien() {
+console.log("spawn")
 alienInvaders.forEach(invader => { // Boucle sur tous les index des aliens
 if (!supprimeAlien.includes(invader)) { // Si l'index de l'alien n'est pas dans le tableau supprimeAlien
 div[invader].classList.add('alien'); // Ajout de la classe 'alien' à l'élément HTML div correspondant à l'index de l'alien
@@ -43,6 +71,7 @@ alienInvaders[i] += avance // Ajoute la valeur de 'avance' à tous les aliens
 var avanceDroit = true // La variable pour contrôler la direction d'avancement horizontal des aliens
 var fin;
 // Boucle qui s'exécute toutes les secondes et gère le mouvement des aliens
+
 function avancerAlienGlobal() {
     supprimeClassAlien() // Supprime la classe aliens des anciennes cases
 
@@ -82,11 +111,12 @@ function avancerAlienGlobal() {
     }
 
 
+
     console.log(alienInvaders[alienInvaders.length - 1]);
     apparaitAlien()
 
 }
-fin = setInterval(avancerAlienGlobal, 250);
+fin = setInterval(avancerAlienGlobal, 500 * difficulté); 
 
     //////////////////////////////////////// Tir /////////////////////////////////////////////////////////
 
@@ -175,26 +205,61 @@ fin = setInterval(avancerAlienGlobal, 250);
                     let newposition = i-20;
                     if (i <= 19){
                     } else {
-                        divs[newposition].classList.add('laser')
-                        divs[newposition].classList.remove('alien')
-                        console.log(newposition);
-                        console.log(alienInvaders + "liste")
-                        alienInvaders = alienInvaders.filter(item => item !== newposition)
-                        console.log(alienInvaders + "apres liste")
-                        
+                        divs[newposition].classList.add('laser');
+                        if (divs[newposition].classList.contains('alien')){
+                            divs[newposition].classList.remove('alien');
+                            alienInvaders = alienInvaders.filter(item => item !== newposition)
+                            divs[newposition].classList.remove('laser');
+                        } else {
+                            divs[newposition].classList.remove('alien');
+                            score++
+                            console.log(score);
+                        }
 
                     }
-
+        
                 
               }
-  
+        
             }
+        
+        }
+    
   
+  
+  setInterval(deplacementLaser,100) }
+ 
+/*    function tirerEnnemi() {
+        for (i = 219; i >= 0; i--) {
+          if (divs[i].classList.contains('alien')) {
+            let randomIndex = Math.floor(Math.random() * 32) + i; // choisir un index au hasard parmi les 32 aliens
+            let newposition = randomIndex + 20;
+            if (newposition <= 239) {
+              setTimeout(function() {
+                divs[newposition].classList.add('laserEnnemi');
+              }, 1000); // délai de 1 seconde pour que le missile avance petit à petit
+            }
+            break;
           }
+        }
+      } 
+      
   
   
-       
   
-  
-  
-  setInterval(deplacementLaser,100)
+
+ 
+  setInterval(tirerEnnemi,1000)*/
+
+
+
+
+
+
+
+
+
+
+
+
+
