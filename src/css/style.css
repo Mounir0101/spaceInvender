@@ -119,11 +119,17 @@ h3 {
     background-position: center;
     background-size: contain;
 
-    background-image: url("../../ressources/missile.jpeg");
+    background-image: url("../../ressources/laser.png");
 
     background-repeat: no-repeat;}
 
+.laserEnnemi {
+    background-position: center;
+    background-size: contain;
 
+    background-image: url("../../ressources/laser.png");
+
+    background-repeat: no-repeat;}
 .difficulty-buttons {
     display: flex;
     height: 100%;
