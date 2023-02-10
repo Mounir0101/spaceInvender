@@ -1,14 +1,83 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,700);
+
+:root {
+	/* Base font size */
+	font-size: 10px;
+
+	/* Heading height variable*/
+	--heading-height: 30em;
+}
+
+body {
+	font-family: "Roboto", Arial, sans-serif;
+	min-height: 100vh;
+    background-color: #000000;
+}
+
+header {
+	position: fixed;
+	width: 100%;
+	height: var(--heading-height);
+}
+
+/* Create angled background with 'before' pseudo-element */
+header::before {
+	content: "";
+	display: block;
+	position: absolute;
+	left: 0;
+	bottom: 6em;
+	width: 100%;
+	height: calc(var(--heading-height) + 10em);
+	z-index: -1;
+	transform: skewY(-3.5deg);
+	background: 
+		linear-gradient(rgba(0,0,0,.6), rgba(0,0,0,.6)),
+		url(https://images.unsplash.com/photo-1495464101292-552d0b52fe41?auto=format&fit=crop&w=1350&q=80) no-repeat center,
+		linear-gradient(#4e4376, #2b5876);
+	background-size: cover;
+	border-bottom: .2em solid #fff;
+}
+
+h1 {
+	font-size: calc(2.8em + 2.6vw);
+	font-weight: 700;
+	letter-spacing: .01em;
+	padding: 2rem 0 0 4.5rem;
+	text-shadow: .022em .022em .022em #111;
+	color: #fff;
+    font-family: 'Zorque', sans-serif;
+}
+
+main {
+	padding: calc(var(--heading-height) + 1.5vw) 4em 0;
+}
+
+p {
+	font-size: calc(2em + .25vw);
+	font-weight: 400;
+	line-height: 2;
+	margin-bottom: 2.5em;
+    margin-top: 1.8em;
+	color: #fcfcfc;
+    font-family: 'Neuropol X Free', sans-serif;
+}
+
+
+
 
 .grille {
     display: flex;
     flex-wrap: wrap;
     border: 1px solid #000;
-    width: 500px;
-    height: 500px;
+    width: 505px;
+    height: 505px;
     margin: 0 auto;
     box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-    background: url("../../ressources/ciel-etoile.jpg");
-    animation: background-defile 0.5s linear infinite;
+    background: url(../../ressources/background-black.png);
+    animation: background-defile 5s linear infinite;
+    margin-bottom: 15em;
+    margin-top: 10em;
 }
 
 div {
@@ -28,44 +97,230 @@ h3 {
     text-align: center;
     margin: 20px 0;
 }
-
 .grille div {
     width: 25px;
     height: 25px;
 }
-
 .tireur {
     background: url(../../ressources/vaisseau.png);
     transform: rotate(180deg);
     background-position: center;
     background-size: contain;
-
-  
 }
-
 .alien {
     background: url(../../ressources/ennemies.png);
     background-position: center;
     background-size: contain;
 }
-
 .boom {
     background-color: red;
 }
-
 .laser {
-    
     background-position: center;
     background-size: contain;
 
     background-image: url("../../ressources/missile.jpeg");
 
-    background-repeat: no-repeat;
+    background-repeat: no-repeat;}
+
+
+.difficulty-buttons {
+    display: flex;
+    height: 100%;
+  }
+  
+  .difficulty-buttons button {
+    background-color: #ddd;
+    border: none;
+    color: #333;
+    padding: 10px 20px;
+    margin: 0 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.2s ease-in-out;
+  }
+  
+  .difficulty-buttons button:hover {
+    background-color: #ccc;
+  }
+  
+  .difficulty-buttons button.easy {
+    background-color: rgb(0, 0, 0);
+    color: #fff;
+  }
+  
+  .difficulty-buttons button.medium {
+    background-color: rgb(0, 0, 0);
+    color: #fff;
+  }
+  
+  .difficulty-buttons button.hard {
+    background-color: rgb(0, 0, 0);
+    color: #fff;
+  }
+
+.results {
+    font-size: 3em;
+    color: #fff;
+    position: relative;
+    top: 400px;
+    left: 10%;
 }
 
-.dataLeft{
-    background-color: red;
+:root {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+  }
+  
+  .footer {
+    position: absolute;
+    width: 100%;
+    height: 12%;
+    left: 0;
+    right: 0;
+    padding: 2rem;
+    background: 
+		linear-gradient(rgba(0,0,0,.6), rgba(0,0,0,.6)),
+		url(https://images.unsplash.com/photo-1495464101292-552d0b52fe41?auto=format&fit=crop&w=1350&q=80) no-repeat center,
+		linear-gradient(#4e4376, #2b5876);
+    background-size: cover;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.2rem;
+    font-size: 350%;
+    border-top: 0.1em solid #fff;
+
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+  *,*::before,*::after{box-sizing: border-box;}
+
+button{
+
+
+all:unset;
+width: 10%;
+height: 100%;
+cursor:pointer;
+display: flex;
+justify-content: center;
+align-items: center;
+border-radius:4px;
+text-transform: uppercase;
+font-size: 2rem;
+padding: 10px 20px;
+margin:3rem;
+	
+	}
+
+/******************BOX-SHADOW**************************/
+
+.neon-box-1{
+
+background:linear-gradient(to right, rgb(0, 255, 4) 0%,50%,rgb(4, 193, 45) 100%);
+
 }
-.dataRight{
-    background-color: blue;
+
+.neon-box-1:hover{
+
+animation: neon-box-1 2s infinite alternate linear 
+
+}	
+	
+@keyframes neon-box-1{
+	
+from{
+	
+	box-shadow:2px 0 6px rgba(5, 248, 50, 0.7),-2px 0 6px rgba(5, 246, 165, 0.7),5px 0 10px rgba(3, 247, 76, 0.7),-5px 0 10px rgba(4, 242, 8, 0.7)
+		
+	
+	}
+	
+to{
+
+	
+box-shadow:10px 0 20px rgba(19, 195, 127, 0.7),-10px 0 20px rgba(0, 255, 255, 0.7),15px 0 30px rgba(3, 238, 50, 0.7),-15px 0 30px rgba(4, 233, 23, 0.7)
+	}
+	
+	}		
+	
+
+.neon-box-2 {
+	
+background:linear-gradient(to right, rgb(205, 241, 2) 0%,50%, rgba(255, 197, 0, 1) 100%);
+
+}
+
+.neon-box-2:hover{
+
+animation: neon-box-2 2s infinite alternate linear ;
+
+}		
+	
+@keyframes neon-box-2{
+	
+from{
+	
+	box-shadow:2px 0 6px rgba(255, 197, 0, 0.7),-2px 0 6px rgba(235, 66, 46, 0.7),5px 0 10px rgba(255, 197, 0, 0.7),-5px 0 10px rgba(235, 66, 46, 0.7)
+		
+	
+	}
+to{
+
+	
+box-shadow:10px 0 20px rgba(255, 197, 0, 0.7),-10px 0 20px rgba(235, 66, 46, 0.7),15px 0 30px rgba(255, 197, 0, 0.7),-15px 0 30px rgba(235, 66, 46, 0.7)
+	}
+	
+	}
+	
+	
+.neon-box-3 {
+	
+background:linear-gradient(to right, #fb5502 0%,50%,#f70000 100%);
+
+}
+	
+.neon-box-3:hover{
+
+animation: neon-box-3 2s infinite alternate linear 
+
+}	
+
+@keyframes neon-box-3{
+	
+from{
+	
+box-shadow:2px 0 6px rgba(247, 157, 0, 0.7),-2px 0 6px rgba(246, 59, 1, 0.7),5px 0 10px rgba(247, 157, 0, 0.7),-5px 0 10px rgba(242, 3, 3, 0.7)
+		
+	}
+	
+to{
+
+	
+box-shadow:10px 0 20px rgba(247, 157, 0, 0.7),-10px 0 20px rgba(236, 2, 2, 0.7),20px 0 40px rgba(247, 157, 0, 0.7),-20px 0 40px rgba(255, 0, 0, 0.7)
+
+	}
+	
+	}	
+
+
+.menulvl {
+    display: flex;
+    right: 50%;
+    width: 100%;
 }
