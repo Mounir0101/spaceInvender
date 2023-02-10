@@ -75,11 +75,16 @@ var fin;
 function avancerAlienGlobal() {
     supprimeClassAlien() // Supprime la classe aliens des anciennes cases
 
-    if (alienInvaders[0] % longueur === 0 ){ // Si le premier alien de la liste atteint le coter gauche
-        var descendreGauche = true; // Descendre gauche true
-    } else if (alienInvaders[alienInvaders.length - 1] % longueur === 19 ){ // Si le dernier alien de la liste atteint le coter droit
-        var descendreDroit = true; // Descendre droit true
+    for (let i = 0; i < alienInvaders.length; i++) { // A tous les aliens 
+        if (alienInvaders[i] % longueur === 0){ // Si le premier alien de la liste atteint le coter gauche
+            var descendreGauche = true; // Descendre gauche true
+        }
+
+        else if (alienInvaders[i] % longueur === 19){ // Si le dernier alien de la liste atteint le coter droit
+            var descendreDroit = true; // Descendre droit true
+        }
     }
+
 
     if (descendreDroit && avanceDroit) { // Si les aliens descendent a droite
         console.log("↓ DESC DROITE <-");;
@@ -101,6 +106,10 @@ function avancerAlienGlobal() {
     avancerAlien();
     for (let i = 0; i < alienInvaders.length; i++) { // Collision
             if (positiontireur === alienInvaders[i]) {
+                alert("PERDUE");
+                clearInterval(fin)
+            }
+            if (alienInvaders[i] > 219){
                 alert("PERDUE");
                 clearInterval(fin)
             }
@@ -196,38 +205,42 @@ fin = setInterval(avancerAlienGlobal, 500 * difficulté);
   
   
   
-  
-          function deplacementLaser(){
-            for (i=0 ;i < 239; i++) {
-                var classes = 0;
-                if (divs[i].classList.contains('laser')){
-                    divs[i].classList.remove('laser');
-                    let newposition = i-20;
-                    if (i <= 19){
-                    } else {
-                        divs[newposition].classList.add('laser');
-                        if (divs[newposition].classList.contains('alien')){
-                            divs[newposition].classList.remove('alien');
-                            alienInvaders = alienInvaders.filter(item => item !== newposition)
-                            divs[newposition].classList.remove('laser');
-                        } else {
-                            divs[newposition].classList.remove('alien');
-                            score++
-                            console.log(score);
-                        }
+          var inewposition = 0;
+    function deplacementLaser(){
+    for (i=0 ;i < 239; i++) {
+    var classes = 0;
+    if (divs[i].classList.contains('laser')){
+    divs[i].classList.remove('laser');
+    let newposition = i-20;
+    if (i <= 19){
+    } else {
+    divs[newposition].classList.add('laser');
+    if (divs[newposition].classList.contains('alien')){
+    divs[newposition].classList.remove('alien');
+    alienInvaders = alienInvaders.filter(item => item !== newposition)
+    divs[newposition].classList.remove('laser');
+    score++
+    console.log(score+" score");
+    }
+    }
+    }
+    }
+    localStorage.setItem('score', score);
 
-                    }
-        
-                
-              }
-        
-            }
-        
-        }
-    
-  
-  
-  setInterval(deplacementLaser,100) }
+    // Read data
+    const car = localStorage.getItem('score');
+    console.log("votre score "+ car)
+    document.querySelector("#score").innerHTML = score;
+
+}
+setInterval(deplacementLaser,100) }
+
+
+
+
+
+
+
  
 /*    function tirerEnnemi() {
         for (i = 219; i >= 0; i--) {
@@ -250,6 +263,17 @@ fin = setInterval(avancerAlienGlobal, 500 * difficulté);
 
  
   setInterval(tirerEnnemi,1000)*/
+
+
+
+
+
+
+
+
+
+
+
 
 
 
