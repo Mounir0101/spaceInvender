@@ -1,7 +1,7 @@
 const grille = document.querySelector('.grille') // Récupère l'élément HTML avec la classe .grille
 let longueur = 20 // La largeur de la grille
 let supprimeAlien = [] // Tableau vide qui contiendra les index des aliens retirés de la grille
-var score = 1;
+var score = 0;
 var difficulté = 1;
 
 const facile = document.querySelector('.neon-box-1');
@@ -197,46 +197,35 @@ fin = setInterval(avancerAlienGlobal, 500 * difficulté);
   
   
           var inewposition = 0;
-          function deplacementLaser(){
-            for (i=0 ;i < 239; i++) {
-                var classes = 0;
-                if (divs[i].classList.contains('laser')){
-                    divs[i].classList.remove('laser');
-                    let newposition = i-20;
-                    if (i <= 19){
-                    } else {
-                        divs[newposition].classList.add('laser');
-                        if (divs[newposition].classList.contains('alien')){
-                            divs[newposition].classList.remove('alien');
-                            alienInvaders = alienInvaders.filter(item => item !== newposition)
-                            divs[newposition].classList.remove('laser');
-                            
-                        } else {
-                            divs[newposition].classList.remove('alien');
-                            score++
-                            console.log(score+" score");
-                            document.querySelector("#score").innerHTML = score;
-                            console.log(newposition);
-                            inewposition = inewposition+1;
-                            console.log(inewposition + "inewposition")
-                            score = inewposition - score - 1
+    function deplacementLaser(){
+    for (i=0 ;i < 239; i++) {
+    var classes = 0;
+    if (divs[i].classList.contains('laser')){
+    divs[i].classList.remove('laser');
+    let newposition = i-20;
+    if (i <= 19){
+    } else {
+    divs[newposition].classList.add('laser');
+    if (divs[newposition].classList.contains('alien')){
+    divs[newposition].classList.remove('alien');
+    alienInvaders = alienInvaders.filter(item => item !== newposition)
+    divs[newposition].classList.remove('laser');
+    score++
+    console.log(score+" score");
+    document.querySelector("#score").innerHTML = score;
+    }
+    }
+    }
+    }
+}
+setInterval(deplacementLaser,100) }
 
-                            console.log(score+" new score");
-                            testScore = false;
-                        }
 
-                    }
-        
-                
-              }
-        
-            }
-        
-        }
-    
-  
-  
-  setInterval(deplacementLaser,100) }
+
+
+
+
+
  
 /*    function tirerEnnemi() {
         for (i = 219; i >= 0; i--) {
