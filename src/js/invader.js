@@ -1,306 +1,200 @@
-window.onload = grille();
-function grille() {
-    var parent = document.getElementById("grille");
-    var listParent = document.getElementById("list");
-    var liste = [];
+const grille = document.querySelector('.grille') // Récupère l'élément HTML avec la classe .grille
+let longueur = 20 // La largeur de la grille
+let supprimeAlien = [] // Tableau vide qui contiendra les index des aliens retirés de la grille
 
-    for (var i = 0; i < 400; i++) {
-      var div = document.createElement("div");
-      parent.appendChild(div);
-      if (i===1 /*|| /*i===2 || i===3 || i===4 || i===5 || i===6 || i===7 || i===8 || i===9 || i===10 || i===11 || i===12*/){
-        div.className = "alien";
-        liste.push("alien");
-      }
-      else {
-        div.className = "case" + i;
-        liste.push("case" + i);
-      }
-    }
-
-    ////////////////////////////////////////////////////////////////////////////////////
-    
-    var listeInvaders = [];
-    var b = 1;
-    
-    for (var x = 0; x < 1; x++){
-        var index = liste.indexOf("alien", b);
-        listeInvaders.push(index);
-        b++;
-    }
-    
-    function avanceDroit() {
-        for (var i = 0; i < listeInvaders.length; i++) {
-            listeInvaders[i] = listeInvaders[i] + 1;
-        }
-    }
-    
-    function avanceGauche() {
-        for (var i = 0; i < listeInvaders.length; i++) {
-            listeInvaders[i] = listeInvaders[i] - 1;
-        }
-    }
-    
-    function avDescendre() {
-        for (var i = 0; i < listeInvaders.length; i++) {
-            listeInvaders[i] = listeInvaders[i] + 20;
-        }
-    }
-    
-    function remplaceListeDroit() {
-        for (var i = 0; i < listeInvaders.length; i++) {
-            var index = listeInvaders[i];
-            liste[index - 1] = "case" + (index - 1);
-            liste[index] = "alien";
-        }
-    }
-    function remplaceListeGauche() {
-        for (var i = 0; i < listeInvaders.length; i++) {
-            var index = listeInvaders[i];
-            liste[index + 1] = "case" + (index + 1);
-            liste[index] = "alien";
-        }
-    }
-
-    function remplaceListeDescendGauche() {
-        for (var i = 0; i < listeInvaders.length; i++) {
-            var index = listeInvaders[i];
-            liste[index - 20] = "case" + (index - 20);
-            liste[index] = "alien";
-        }
-        console.log("remplaceListeDescendGauche")
-    }
-    function remplaceListeDescendDroit() {
-        for (var i = 0; i < listeInvaders.length; i++) {
-            var index = listeInvaders[i];
-            liste[index + 20] = "case" + (index + 20);
-            liste[index] = "alien";
-        }
-        console.log("remplaceListeDescendGauche")
-    }
-    
-    function remplaceGrilleDroit() {
-        for (var i = 0; i < listeInvaders.length; i++) {
-            var index = listeInvaders[i];
-            var nextAlien = document.querySelector(".case" + index);
-            nextAlien.classList.add("alien");
-        }
-    }
-    function remplaceGrilleGauche() {
-        for (var i = 0; i < listeInvaders.length; i++) {
-            var index = listeInvaders[i];
-            var nextAlien = document.querySelector(".case" + index);
-            nextAlien.classList.add("alien");
-        }
-    }
-
-    function remplaceGrilleDescendGauche() {
-        for (var i = 0; i < listeInvaders.length; i++) {
-            var index = listeInvaders[i];
-            var nextAlien = document.querySelector(".case" + index);
-            nextAlien.classList.add("alien");
-        }
-        console.log("remplaceGrilleDescendGauche")
-
-    }
-    function remplaceGrilleDescendDroit() {
-        for (var i = 0; i < listeInvaders.length; i++) {
-            var index = listeInvaders[i];
-            var nextAlien = document.querySelector(".case" + index);
-            nextAlien.classList.add("alien");
-        }
-        console.log("remplaceGrilleDescendGauche")
-
-    }
-    
-    function supprimeAlien() {
-        var div = document.querySelector(".alien");
-        div.classList.remove("alien");
-    }
-    
-
-    console.log(liste);   
-    console.log(listeInvaders);
-
-
-
-
-
-
-
-
-    var coterDroit = true;
-    var coterGauche = false;
-    var descendreDroit = false;
-    var descendreGauche = false;
-
-    var index = listeInvaders[0];
-
-    setInterval(function() {
-        supprimeAlien();
-        console.log(index);
-        console.log(listeInvaders);
-
-
-
-        if (coterDroit == true){
-
-            console.log("----->");;
-            avanceDroit();
-            console.log(liste[index]); // Donne les données de la case indexe
-            remplaceListeDroit();
-            remplaceGrilleDroit();
-
-            if (listeInvaders[0] % 20 === 19) { // Tous les multiple de 20 pour que ça aille de l'autre coté
-                console.log("Coter Droit")
-                descendreGauche = true;
-                descendreDroit = false;
-                coterDroit = false;
-                coterGauche = false;
-              }
-
-            
-        }
-        else if (coterGauche == true){
-
-            console.log("<-----");
-            avanceGauche();
-            remplaceListeGauche();
-            remplaceGrilleGauche();
-            console.log(liste[index-1]);
-            if (listeInvaders[0] % 20 === 0) { // Tous les multiple de 20 pour que ça aille de l'autre coté
-                console.log("Coter Droit")
-                descendreGauche = false;
-                descendreDroit = true;
-                coterDroit = false;
-                coterGauche = false;
-              }
-
-        }
-        else if (descendreDroit == true){
-            console.log(index);
-
-            console.log("↓ DESD DROIT ->");;
-
-            avDescendre();
-
-            console.log(liste[index]);
-            console.log(index);
-            
-            remplaceListeDescendDroit();
-
-            remplaceGrilleDescendDroit();
-            
-
-                console.log("va partir sur la droite")
-                descendre = false;
-                coterDroit = true;
-                coterGauche = false;
-            
-
-
-        }
-        else if (descendreGauche == true){
-
-            console.log("↓ DESC GAUCHE <-");;
-
-            avDescendre();
-
-            console.log(liste[index]);
-            console.log(index);
-            
-            remplaceListeDescendGauche();
-
-            remplaceGrilleDescendGauche();
-            
-                console.log("va partir sur la gauche")
-                descendre = false;
-                coterDroit = false;
-                coterGauche = true;
-            
-
-        }
-        else {
-
-        }
-        
-
-
-    
-    }, 1000);
-    
+// Boucle qui crée 400 cases pour la grille et les ajoute à la section HTML
+for (let i = 0; i < 240; i++) {
+const div = document.createElement('div') // Crée un nouvel élément HTML div
+div.className = "case" + i; // Ajoute la classe "case + l'index de la case" à l'élément div
+grille.appendChild(div) // Ajoute l'élément div à la section .grille
 }
 
-/////////////////////////////////////////////////////////////////////
+const div = Array.from(document.querySelectorAll('.grille div')) // Conversion de la liste des éléments HTML div en tableau pour une utilisation plus facile
 
-function tirer() {
-    var parent = document.getElementById("grille");
-    var div = document.createElement("div");
-    div.className = "laser";
-    div.style.top = "500px"; // Position initiale du tir
-    div.style.left = "1200px"; // Position initiale du tir
-    parent.appendChild(div);
-    var vitesse = setInterval(function() {
-      var top = parseInt(div.style.top);
-      top -= 10; // Déplacement du tir vers le haut
-      div.style.top = top + "px";      
-      if (top <= 85) {
-        clearInterval(vitesse); // Arrêt de l'animation lorsque le tir sort de la grille
-        parent.removeChild(div); // Suppression du tir du DOM
-      } 
-    }, 30); 
+var alienInvaders = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52] // Tableau contenant les index des cases où les aliens sont positionnés
 
-  }
-
-
-
-document.addEventListener("keydown", function(event) {
-  if (event.code === "Space") {
-    tirer();
-  }
+// Fonction qui ajoute la classe 'alien' aux éléments HTML div correspondant aux index des aliens
+function apparaitAlien() {
+alienInvaders.forEach(invader => { // Boucle sur tous les index des aliens
+if (!supprimeAlien.includes(invader)) { // Si l'index de l'alien n'est pas dans le tableau supprimeAlien
+div[invader].classList.add('alien'); // Ajout de la classe 'alien' à l'élément HTML div correspondant à l'index de l'alien
+}
 });
+}
 
-//////////////////////////////////////////////////////////////////////////////////
+apparaitAlien() // Appel de la fonction apparaitAlien
 
-var divs = document.querySelectorAll('div');
+// Fonction qui retire la classe 'alien' de tous les éléments HTML div correspondant aux index des aliens
+function supprimeClassAlien() {
+for (let i = 0; i < alienInvaders.length; i++) {
+div[alienInvaders[i]].classList.remove('alien') // Retire la classe 'alien' des cases ou y avait les aliens
+}
+}
+
+var avance = 1; // La variable pour contrôler l'avancement  des aliens
+
+// Fonction qui avance les aliens 
+function avancerAlien(){
+for (let i = 0; i < alienInvaders.length; i++) {
+alienInvaders[i] += avance // Ajoute la valeur de 'avance' à tous les aliens
+}
+}
+
+var avanceDroit = true // La variable pour contrôler la direction d'avancement horizontal des aliens
+var fin;
+// Boucle qui s'exécute toutes les secondes et gère le mouvement des aliens
+function avancerAlienGlobal() {
+    supprimeClassAlien() // Supprime la classe aliens des anciennes cases
+
+    if (alienInvaders[0] % longueur === 0 ){ // Si le premier alien de la liste atteint le coter gauche
+        var descendreGauche = true; // Descendre gauche true
+    } else if (alienInvaders[alienInvaders.length - 1] % longueur === 19 ){ // Si le dernier alien de la liste atteint le coter droit
+        var descendreDroit = true; // Descendre droit true
+    }
+
+    if (descendreDroit && avanceDroit) { // Si les aliens descendent a droite
+        console.log("↓ DESC DROITE <-");;
+        for (let i = 0; i < alienInvaders.length; i++) { // A tous les aliens 
+            alienInvaders[i] += longueur +1 // Fait avancer tous les aliens de 20 + 1 
+            avance = -1 // Aller a gauche
+            avanceDroit = false // Condition pour empecher de descendre a l'infinie
+        }
+    }
+
+    if(descendreGauche && avanceDroit == false) {
+        console.log("↓ DESD GAUCHE ->");
+        for (let i = 0; i < alienInvaders.length; i++) {
+        alienInvaders[i] += longueur -1 // Fait avancer tous les aliens de 20 - 1
+        avance = 1 // Aller a droite
+        avanceDroit = true // Condition pour empecher de descendre a l'infinie
+        }
+    }
+    avancerAlien();
+    for (let i = 0; i < alienInvaders.length; i++) { // Collision
+            if (positiontireur === alienInvaders[i]) {
+                alert("PERDUE");
+                clearInterval(fin)
+            }
+        }
+    if (alienInvaders.length === 0){
+        alert("GAGNER");
+        clearInterval(fin)
+    }
+
+
+    console.log(alienInvaders[alienInvaders.length - 1]);
+    apparaitAlien()
+
+}
+fin = setInterval(avancerAlienGlobal, 250);
+
+    //////////////////////////////////////// Tir /////////////////////////////////////////////////////////
+
+   
+        
+      
+     
+    
+    //////////////////////////////////////////////////////////// Vaisseau ///////////////////////////////////////////////
+
+    
+
+
+
+
+
+    
+    var divs = document.querySelectorAll('.grille div');
     var positiontireur = 230;
-    divs [positiontireur].classList.add('tireur') ;
-
-
-
-
-    let tireur = document.querySelector('tireur')
-
+    divs[positiontireur].classList.add('tireur');
+    
+    
+   
     document.onkeydown = function (e) {
-        if (e.key == 'ArrowUp') {
-            for(let j = 0; j < 20; j++) {
 
-                    let cases = document.querySelector('.tireur')
+        divs[positiontireur].classList.remove('tireur') ;
 
-                            cases.classList.remove('tireur')
-                            cases.previousElementSibling.classList.add('tireur')                
+        
+        if (e.key == 'z') {
+            if (positiontireur > 199)
+            positiontireur -= 20;
+          }
+          if (e.key == 's') {
+              if(positiontireur < 220)
+            positiontireur += 20 
+          }
+          
+          if (e.key == 'a') {
+            if (positiontireur != 180 && positiontireur != 200 && positiontireur != 220 )
+            positiontireur -= 1 
+               
+          }
+          if (e.key == 'd'){  
+    
+            if (positiontireur != 199 && positiontireur != 219 && positiontireur != 239)
+            positiontireur += 1
+            
+            
+          }
+    
+        divs[positiontireur].classList.add('tireur') ;
+        
+        }
+
+      
+       
+        
+
+        function tir(e){
+
+
+            if(e.key == 'c'){
+  
+              console.log('shot')
+              //const audio = new Audio("../../ressources/falling-bomb-41038.mp3");
+               //audio.play();
+                divs[positiontireur - 20].classList.add('laser');
+                
             }
-        }
-        if (e.key == 'ArrowDown') {
-            for(let j = 0; j < 20; j++) {
+          
+          
+    
+          }
+  
+          setInterval(deplacementLaser,100)
+          document.addEventListener('keyup', tir);
+  
+  
+  
+  
+          function deplacementLaser(){
+            for (i=0 ;i < 239; i++) {
+                var classes = 0;
+                if (divs[i].classList.contains('laser')){
+                    divs[i].classList.remove('laser');
+                    let newposition = i-20;
+                    if (i <= 19){
+                    } else {
+                        divs[newposition].classList.add('laser')
+                        divs[newposition].classList.remove('alien')
+                        console.log(newposition);
+                        console.log(alienInvaders + "liste")
+                        alienInvaders = alienInvaders.filter(item => item !== newposition)
+                        console.log(alienInvaders + "apres liste")
+                        
 
-                    let cases = document.querySelector('.tireur')
+                    }
 
-                            cases.classList.remove('tireur')
-                            cases.nextElementSibling.classList.add('tireur')                
+                
+              }
+  
             }
-        }
-
-        if (e.key == 'ArrowLeft') {
-          var cases = document.querySelector('.tireur')
-
-                cases.classList.remove('tireur')
-                cases.previousElementSibling.classList.add('tireur')
-
-        }
-        var cases = document.querySelector('.tireur')
-        if (e.key == 'ArrowRight'){
-            cases.classList.remove('tireur')
-            cases.nextElementSibling.classList.add('tireur')
-        }
-    };
-
+  
+          }
+  
+  
+       
+  
+  
+  
+  setInterval(deplacementLaser,100)

@@ -70,10 +70,14 @@ p {
     display: flex;
     flex-wrap: wrap;
     border: 1px solid #000;
-    width: 500px;
-    height: 500px;
+    width: 505px;
+    height: 505px;
     margin: 0 auto;
     box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    background: url(../../ressources/background-black.png);
+    animation: background-defile 5s linear infinite;
+    margin-bottom: 15em;
+    margin-top: 10em;
     background: url(../../ressources/background-black.png);
     animation: background-defile 5s linear infinite;
     margin-bottom: 15em;
@@ -116,8 +120,12 @@ h3 {
     background-color: red;
 }
 .laser {
-    background-color: orange;
-}
+    background-position: center;
+    background-size: contain;
+
+    background-image: url("../../ressources/missile.jpeg");
+
+    background-repeat: no-repeat;}
 
 
 .difficulty-buttons {
